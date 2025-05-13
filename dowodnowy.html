@@ -57,6 +57,16 @@
 
     </script>
     <style>
+        /* Disable text selection and image dragging */
+body, * {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
   body {
     overscroll-behavior: contain;
     animation: slideIn 0.4s ease-out;
