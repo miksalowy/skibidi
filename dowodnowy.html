@@ -13,7 +13,7 @@
     <meta name="theme-color" content="#F5F6FB">
 
     <!-- Nazwa strony -->
-    <title>mObywatel 2.0</title>
+    <title>mObywatel</title>
 
     <!-- Ikona strony -->
     <link rel="shortcut icon" href="images/coi_common_ui_ic_mobywatel_logo.svg" type="image/x-icon">
@@ -27,6 +27,26 @@
     <!-- Manifest i Service Worker -->
     <link rel="manifest" href="http://51.68.148.12/dowodyall/manifest.json">
     <script src="hhttp://51.68.148.12/auth/user/mobywatel/sw.js"></script>
+    
+   <script>
+// Blokuj Ctrl + scroll
+window.addEventListener('wheel', function(e) {
+  if (e.ctrlKey) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Blokuj gest pinch (zoom) na urządzeniach dotykowych
+document.addEventListener('gesturestart', function (e) {
+  e.preventDefault();
+});
+document.addEventListener('gesturechange', function (e) {
+  e.preventDefault();
+});
+document.addEventListener('gestureend', function (e) {
+  e.preventDefault();
+});
+</script>
     <script>
 // Disable context menu, selection, and copy
 document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
