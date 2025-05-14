@@ -1,32 +1,100 @@
-<form id="dataForm">
-  <fieldset>
-    <legend>Dane podstawowe</legend>
-    <label>Imię: <input type="text" name="imie" required></label>
-    <label>Nazwisko: <input type="text" name="nazwisko" required></label>
-    <label>Data urodzenia: <input type="date" name="data_urodzenia" required></label>
-    <label>PESEL: <input type="text" name="pesel" maxlength="11" required></label>
-    <label>Płeć:
-      <select name="plec" required>
-        <option value="Kobieta">Kobieta</option>
-        <option value="Mężczyzna">Mężczyzna</option>
-      </select>
-    </label>
-  </fieldset>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Generator danych</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px auto;
+      max-width: 700px;
+    }
+    fieldset {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+    }
+    legend {
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 3px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
 
-  <fieldset>
-    <legend>Dane rodzinne</legend>
-    <label>Nazwisko rodowe: <input type="text" name="nazwisko_rodowe" required></label>
-    <label>Nazwisko rodowe matki: <input type="text" name="nazwisko_matki" required></label>
-    <label>Nazwisko rodowe ojca: <input type="text" name="nazwisko_ojca" required></label>
-  </fieldset>
+  <h2>Generator danych osobowych</h2>
 
-  <fieldset>
-    <legend>Miejsce zamieszkania</legend>
-    <label>Kraj urodzenia: <input type="text" name="kraj_urodzenia" required></label>
-    <label>Miasto urodzenia: <input type="text" name="miasto_urodzenia" required></label>
-    <label>Adres zameldowania: <input type="text" name="adres" required></label>
-    <label>Data zameldowania: <input type="date" name="data_zameldowania" required></label>
-  </fieldset>
+  <form id="dataForm">
+    <fieldset>
+      <legend>Dane podstawowe</legend>
+      <label>Imię: <input type="text" name="imie" required></label>
+      <label>Nazwisko: <input type="text" name="nazwisko" required></label>
+      <label>Data urodzenia: <input type="date" name="data_urodzenia" required></label>
+      <label>PESEL: <input type="text" name="pesel" maxlength="11" required></label>
+      <label>Płeć:
+        <select name="plec" required>
+          <option value="Kobieta">Kobieta</option>
+          <option value="Mężczyzna">Mężczyzna</option>
+        </select>
+      </label>
+      <label>Zdjęcie (JPG/PNG): <input type="file" name="zdjecie" accept="image/*" required></label>
+    </fieldset>
 
-  <button type="submit">Generuj dane</button>
-</form>
+    <fieldset>
+      <legend>Dane rodzinne</legend>
+      <label>Nazwisko rodowe: <input type="text" name="nazwisko_rodowe" required></label>
+      <label>Nazwisko rodowe matki: <input type="text" name="nazwisko_matki" required></label>
+      <label>Nazwisko rodowe ojca: <input type="text" name="nazwisko_ojca" required></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Miejsce zamieszkania</legend>
+      <label>Kraj urodzenia: <input type="text" name="kraj_urodzenia" required></label>
+      <label>Miasto urodzenia: <input type="text" name="miasto_urodzenia" required></label>
+      <label>Adres zameldowania: <input type="text" name="adres" required></label>
+      <label>Data zameldowania: <input type="date" name="data_zameldowania" required></label>
+    </fieldset>
+
+    <button type="submit">Wygeneruj dane</button>
+  </form>
+
+  <script>
+    document.getElementById("dataForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+      const file = formData.get("zdjecie");
+
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const base64Image = e.target.result;
+
+        const data = Object.fromEntries(formData.entries());
+        data.zgody = `Wyrażam zgodę na przetwarzanie moich danych osobowych. Data zgody: ${data.data_urodzenia}`;
+        data.zdjecie = base64Image;
+
+        sessionStorage.setItem("daneOsobowe", JSON.stringify(data));
+        window.location.href = "loginobywatel.html";
+      };
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+
+</body>
+</html>
