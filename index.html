@@ -1,1 +1,63 @@
-sperma
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Generator Danych</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    #profile {
+      margin-top: 20px;
+    }
+    img {
+      max-width: 200px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generator Danych Osobowych</h1>
+  <label>Imię: <input type="text" id="imie" value="Andrzej"></label>
+  <label>Nazwisko: <input type="text" id="nazwisko" value="Gdak"></label>
+  <label>Data urodzenia: <input type="date" id="urodziny" value="2006-07-15"></label>
+  <label>Zdjęcie: <input type="file" id="zdjecie" accept="image/*"></label>
+
+  <button onclick="aktualizujProfil()">Aktualizuj Dane</button>
+
+  <div id="profile">
+    <h2>Dane profilu:</h2>
+    <p id="daneImie">Imię: Andrzej</p>
+    <p id="daneNazwisko">Nazwisko: Gdak</p>
+    <p id="daneUrodziny">Data urodzenia: 15.07.2006</p>
+    <img id="zdjecieProfilowe" src="gdakcwel.jpg" alt="Zdjęcie profilowe">
+  </div>
+
+  <script>
+    function aktualizujProfil() {
+      const imie = document.getElementById('imie').value;
+      const nazwisko = document.getElementById('nazwisko').value;
+      const urodziny = document.getElementById('urodziny').value;
+      const zdjecieInput = document.getElementById('zdjecie');
+      const formatowanaData = new Date(urodziny).toLocaleDateString('pl-PL');
+
+      document.getElementById('daneImie').textContent = 'Imię: ' + imie;
+      document.getElementById('daneNazwisko').textContent = 'Nazwisko: ' + nazwisko;
+      document.getElementById('daneUrodziny').textContent = 'Data urodzenia: ' + formatowanaData;
+
+      if (zdjecieInput.files && zdjecieInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('zdjecieProfilowe').src = e.target.result;
+        };
+        reader.readAsDataURL(zdjecieInput.files[0]);
+      }
+    }
+  </script>
+</body>
+</html>
