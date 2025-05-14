@@ -31,6 +31,12 @@
       padding: 10px 20px;
       font-size: 16px;
     }
+    .nav-button {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      color: #333;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
@@ -70,6 +76,10 @@
 
     <button type="submit">Wygeneruj dane</button>
   </form>
+
+  <button class="nav-button" onclick="window.location.href='loginobywatel.html'">
+    Przejdź do loginobywatel.html
+  </button>
 
   <script>
     document.getElementById("dataForm").addEventListener("submit", function(event) {
