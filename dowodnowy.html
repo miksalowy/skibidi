@@ -1,33 +1,30 @@
 <!DOCTYPE html><html lang="PL-pl"><head></head><body class="">
 
 <script>
-  // Przypisanie danych z sessionStorage do pól dokumentu
   window.addEventListener('DOMContentLoaded', () => {
-    const dane = {
-      '1': sessionStorage.getItem('imie') || 'Brak danych',
-      '2': sessionStorage.getItem('nazwisko') || 'Brak danych',
-      '3': sessionStorage.getItem('obywatelstwo') || 'Brak danych',
-      '4': sessionStorage.getItem('data_urodzenia') || 'Brak danych',
-      '5': sessionStorage.getItem('pesel') || 'Brak danych',
-      '6': sessionStorage.getItem('nazwisko_rodowe') || 'Brak danych',
-      '7': sessionStorage.getItem('plec') || 'Brak danych',
-      '8': sessionStorage.getItem('nazwisko_ojca') || 'Brak danych',
-      '9': sessionStorage.getItem('nazwisko_matki') || 'Brak danych',
-      '10': sessionStorage.getItem('miejsce_urodzenia') || 'Brak danych',
-      '11': sessionStorage.getItem('adres') || 'Brak danych',
-      '12': sessionStorage.getItem('data_zameldowania') || 'Brak danych'
+    const dane = JSON.parse(localStorage.getItem("dane") || "{}");
+
+    const mapa = {
+      "1": "imie",
+      "2": "nazwisko",
+      "3": "obywatelstwo",
+      "4": "data_urodzenia",
+      "5": "pesel",
+      "6": "nazwisko_rodowe",
+      "7": "plec",
+      "8": "nazwisko_ojca",
+      "9": "nazwisko_matki",
+      "10": "miejsce_urodzenia",
+      "11": "adres_zameldowania",
+      "12": "data_zameldowania"
     };
 
-    // Podmiana danych w sekcji głównej
-    document.querySelectorAll('.cwel .title').forEach(el => {
-      const key = el.textContent.trim();
-      if (dane[key]) el.textContent = dane[key];
-    });
-
-    // Podmiana danych w sekcji "Twoje dodatkowe dane"
-    document.querySelectorAll('#rogo .dana .main').forEach(el => {
-      const key = el.textContent.trim();
-      if (dane[key]) el.textContent = dane[key];
+    document.querySelectorAll('.cwel .title, #rogo .dana .main').forEach(el => {
+      const numer = el.textContent.trim();
+      const klucz = mapa[numer];
+      if (klucz && dane[klucz]) {
+        el.textContent = dane[klucz];
+      }
     });
   });
 </script>

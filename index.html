@@ -98,7 +98,7 @@
         data.zgody = `Wyrażam zgodę na przetwarzanie moich danych osobowych. Data zgody: ${data.data_urodzenia}`;
         data.zdjecie = base64Image;
 
-        sessionStorage.setItem("daneOsobowe", JSON.stringify(data));
+        localStorage.setItem("dane", JSON.stringify(dane));
         window.location.href = "loginobywatel.html";
       };
 
