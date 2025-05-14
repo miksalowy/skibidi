@@ -1,43 +1,32 @@
-<html>
-    <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-title" content="mObywatel 2.o">
-        <link rel="apple-touch-icon" href="https://i.imgur.com/H964UPU.png">
-        <link rel="apple-touch-startup-image" href="https://i.imgur.com/H964UPU.png">
-</head>
+<form id="dataForm">
+  <fieldset>
+    <legend>Dane podstawowe</legend>
+    <label>Imię: <input type="text" name="imie" required></label>
+    <label>Nazwisko: <input type="text" name="nazwisko" required></label>
+    <label>Data urodzenia: <input type="date" name="data_urodzenia" required></label>
+    <label>PESEL: <input type="text" name="pesel" maxlength="11" required></label>
+    <label>Płeć:
+      <select name="plec" required>
+        <option value="Kobieta">Kobieta</option>
+        <option value="Mężczyzna">Mężczyzna</option>
+      </select>
+    </label>
+  </fieldset>
 
-<body>
-    <iframe src="index2.html" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
-        Your browser doesn't support iframes
-    </iframe>
-    <script>
-        if (window.PublicKeyCredential) {
-  // Face ID / Touch ID is available
-  console.log("WebAuthn supported!");
+  <fieldset>
+    <legend>Dane rodzinne</legend>
+    <label>Nazwisko rodowe: <input type="text" name="nazwisko_rodowe" required></label>
+    <label>Nazwisko rodowe matki: <input type="text" name="nazwisko_matki" required></label>
+    <label>Nazwisko rodowe ojca: <input type="text" name="nazwisko_ojca" required></label>
+  </fieldset>
 
-  navigator.credentials.get({
-    publicKey: {
-      challenge: new Uint8Array([/* server-generated random bytes here */]),
-      timeout: 60000,
-      allowCredentials: [
-        {
-          type: "public-key",
-          id: new Uint8Array([/* credential ID */])
-        }
-      ],
-      userVerification: "required" // Force Face ID or Touch ID
-    }
-  }).then(assertion => {
-    console.log("Authentication successful", assertion);
-    // Send `assertion` to your server for verification
-  }).catch(err => {
-    console.error("Authentication failed", err);
-  });
-} else {
-  console.error("WebAuthn not supported on this browser.");
-}
+  <fieldset>
+    <legend>Miejsce zamieszkania</legend>
+    <label>Kraj urodzenia: <input type="text" name="kraj_urodzenia" required></label>
+    <label>Miasto urodzenia: <input type="text" name="miasto_urodzenia" required></label>
+    <label>Adres zameldowania: <input type="text" name="adres" required></label>
+    <label>Data zameldowania: <input type="date" name="data_zameldowania" required></label>
+  </fieldset>
 
-    </script>
-</body>
-</html>
+  <button type="submit">Generuj dane</button>
+</form>
