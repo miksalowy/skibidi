@@ -1,6 +1,28 @@
 
 
-<!DOCTYPE html><html lang="PL-pl"><head></head><body class="">
+<!DOCTYPE html><html lang="PL-pl"><head>
+    <script>
+    // Blokowanie gestów pinch-zoom na urządzeniach mobilnych
+    document.addEventListener('gesturestart', function (e) {
+        e.preventDefault();
+    });
+    document.addEventListener('gesturechange', function (e) {
+        e.preventDefault();
+    });
+    document.addEventListener('gestureend', function (e) {
+        e.preventDefault();
+    });
+
+    // Blokowanie zoomu skrótami klawiszowymi (np. Ctrl + / Ctrl - / Ctrl + kółko myszy)
+    document.addEventListener('keydown', function (e) {
+        if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+            e.preventDefault();
+        }
+    });
+
+    window
+    
+</head><body class="">
 
 
 <link rel="manifest" href="/manifest.json" />
