@@ -1,5 +1,36 @@
 <!DOCTYPE html><html lang="PL-pl"><head></head><body class="">
 
+<script>
+  // Przypisanie danych z sessionStorage do pól dokumentu
+  window.addEventListener('DOMContentLoaded', () => {
+    const dane = {
+      '1': sessionStorage.getItem('imie') || 'Brak danych',
+      '2': sessionStorage.getItem('nazwisko') || 'Brak danych',
+      '3': sessionStorage.getItem('obywatelstwo') || 'Brak danych',
+      '4': sessionStorage.getItem('data_urodzenia') || 'Brak danych',
+      '5': sessionStorage.getItem('pesel') || 'Brak danych',
+      '6': sessionStorage.getItem('nazwisko_rodowe') || 'Brak danych',
+      '7': sessionStorage.getItem('plec') || 'Brak danych',
+      '8': sessionStorage.getItem('nazwisko_ojca') || 'Brak danych',
+      '9': sessionStorage.getItem('nazwisko_matki') || 'Brak danych',
+      '10': sessionStorage.getItem('miejsce_urodzenia') || 'Brak danych',
+      '11': sessionStorage.getItem('adres') || 'Brak danych',
+      '12': sessionStorage.getItem('data_zameldowania') || 'Brak danych'
+    };
+
+    // Podmiana danych w sekcji głównej
+    document.querySelectorAll('.cwel .title').forEach(el => {
+      const key = el.textContent.trim();
+      if (dane[key]) el.textContent = dane[key];
+    });
+
+    // Podmiana danych w sekcji "Twoje dodatkowe dane"
+    document.querySelectorAll('#rogo .dana .main').forEach(el => {
+      const key = el.textContent.trim();
+      if (dane[key]) el.textContent = dane[key];
+    });
+  });
+</script>
 
 <link rel="manifest" href="/manifest.json" />
 <script src="/fullscreen.js" defer></script>
@@ -287,7 +318,7 @@ body, html {
         <section id="praw">
             <div class="cwel">
                 <span class="title">
-                    MICHAŁ
+                    1
                 </span>
                 <span class="description">
                     Imię (imiona)
@@ -295,7 +326,8 @@ body, html {
             </div>
             <div class="cwel">
                 <span class="title">
-                    PODDENEK
+                    2
+		
                 </span>
                 <span class="description">
                     Nazwisko
@@ -303,7 +335,7 @@ body, html {
             </div>
             <div class="cwel">
                 <span class="title">
-                    POLSKIE
+                    3
                 </span>
                 <span class="description">
                     Obywatelstwo
@@ -311,7 +343,7 @@ body, html {
             </div>
             <div class="cwel">
                 <span class="title">
-                    02.06.2006
+                    4
                 </span>
                 <span class="description">
                     Data urodzenia
@@ -319,7 +351,7 @@ body, html {
             </div>
             <div class="cwel">
                 <span class="title">
-                    06260202957
+                    5
                 </span>
                 <span class="description">
                     Numer PESEL
@@ -362,38 +394,39 @@ body, html {
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Nazwisko rodowe</p>
-                <p class="main">PODDENEK</p>
+                <p class="main">6</p>
             </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Płeć</p>
-                <p class="main">Mężczyzna</p>
+                <p class="main">7</p>
             </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Nazwisko rodowe ojca</p>
-                <p class="main">PODDENEK</p>
+                <p class="main">8</p>
             </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Nazwisko rodowe matki</p>
-                <p class="main">WOJCIECHOWSKA</p>
+                <p class="main">9</p>
             </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Miejsce urodzenia</p>
-                <p class="main">Warszawa</p>
+                <p class="main">10</p>
             </section>
             <p class="krecha"></p>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Adres zameldowania na pobyt stały</p>
-                <p class="main">ul. Stołeczna 23<br>05-083 Zaborów</p>
+                <p class="main">11</p>
             </section>
             <p class="krecha"></p>
             <section class="dana">
                 <p class="info">Data zameldowania na pobyt stały</p>
-                <p class="main">2006-02-06</p>
+                <p class="main">12
+				</p>
             </section>
         </div>
     </div>
